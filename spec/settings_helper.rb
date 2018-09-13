@@ -41,7 +41,15 @@ class BareosResourceHelper
       val = false
     when 'address'
       val = 'host.name.com'
-    when 'addresses', 'include_exclude_item', 'runscript', 'hash'
+    when 'include_exclude_item'
+      sep = ' ' unless type == 'addresses'
+      val = {
+        'x' => 'y'
+      }
+      result = '{
+    x = "y"
+  }'
+    when 'addresses', 'runscript', 'hash'
       sep = ' ' unless type == 'addresses'
       val = {
         'x' => 'y'
