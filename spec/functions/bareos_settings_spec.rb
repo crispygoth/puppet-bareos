@@ -159,12 +159,13 @@ describe 'bareos_settings' do
             'Res'        => 'Val'
           }
         }
+        quote = case type when 'include_exclude_item' then '"' else '' end
         result = "#{indent_default}Test {
-#{indent_default}#{indent_default}My Directive = content
-#{indent_default}#{indent_default}Array = a1
-#{indent_default}#{indent_default}Array = b2
+#{indent_default}#{indent_default}My Directive = #{quote}content#{quote}
+#{indent_default}#{indent_default}Array = #{quote}a1#{quote}
+#{indent_default}#{indent_default}Array = #{quote}b2#{quote}
 #{indent_default}#{indent_default}Second Hash {
-#{indent_default}#{indent_default}#{indent_default}Res = Val
+#{indent_default}#{indent_default}#{indent_default}Res = #{quote}Val#{quote}
 #{indent_default}#{indent_default}}
 #{indent_default}}"
         is_expected.to run.with_params([val, 'Test', type, true]).and_return(result)
