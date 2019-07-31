@@ -32,7 +32,7 @@ class bareos::repository(
   }
 
   case $os {
-      /(?i:redhat|centos|fedora)/: {
+      /(?i:redhat|centos|fedora|virtuozzolinux)/: {
         case $os {
           'RedHat': {
             $location = "${url}RHEL_${osmajrelease}"
@@ -42,6 +42,10 @@ class bareos::repository(
           }
           'Fedora': {
             $location = "${url}Fedora_${osmajrelease}"
+          }
+          'VirtuozzoLinux': {
+            # RHEL repository works fine for VirtuozzoLinux / OpenVZ
+            $location = "${url}RHEL_${osmajrelease}"
           }
           default: {
             fail('Operatingsystem is not supported by this module')
